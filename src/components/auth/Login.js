@@ -29,15 +29,30 @@ class Login extends Component {
        axios.post('http://localhost:444/v1/auth', user)
        .then((result) => {
          console.log(result.data.message);
+         //this.state.statusmessage=result.data.message
          this.setState({statusmessage:result.data.message});
        });
     }  
+
+    emailPassword=()=>{
+        console.log(this.state.username);
+        var user={username:this.state.username};
+        axios.post('http://localhost:444/v1/forget-password', user)
+        .then((result) => {
+          console.log(result.data.message);
+          //this.state.statusmessage=result.data.message
+          this.setState({statusmessage:result.data.message});
+        });
+     }  
+ 
+
+    
    
 
   render() {
       //defining inline css
       const inlinecss={
-        height:"200px"
+        height:"60px"
     }
     return (
         <div className="container">
@@ -58,9 +73,56 @@ class Login extends Component {
 
            <button type="submit" onClick={this.authUser} className="btn btn-primary">Submit</button>
             &nbsp;&nbsp;&nbsp;
-           <button type="submit" onClick={this.login} className="btn btn-warning">Forget Password</button>
-           <br/><br/><br/><br/><br/><br/>
+           <button type="submit" onClick={this.emailPassword} className="btn btn-warning">Forget Password</button>
+          
      </div>
+       <hr/> 
+      <p>The .table-bordered class adds borders on all sides of the table and the cells:</p>            
+  <table class="table table-bordered" >
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+        <td>
+            <button type="submit" className="btn btn-primary btn-sm">Delete</button>
+            &nbsp; 
+            <button type="submit" className="btn btn-danger btn-sm">Edit</button>
+            </td>
+        
+      </tr>
+      <tr>
+        <td>Mary</td>
+        <td>Moe</td>
+        <td>mary@example.com</td>
+        <td>
+            <button type="submit" className="btn btn-primary btn-sm">Delete</button>
+            &nbsp; 
+            <button type="submit" className="btn btn-danger btn-sm">Edit</button>
+            </td>
+        
+      </tr>
+      <tr>
+        <td>July</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+        <td>
+            <button type="submit" className="btn btn-primary btn-sm">Delete</button>
+             &nbsp; 
+            <button type="submit" className="btn btn-danger btn-sm">Edit</button>
+            </td>
+        
+      </tr>
+    </tbody>
+  </table>
      </div>
     )
   }
